@@ -8,17 +8,22 @@ export default class Home extends React.Component {
 
   render() {
     return (
-    <div className="home-container-secondary">
-      <div className="home-container">
-        <div className="home-box">
-          <h2 className="home-description">iRemember is an application designed to help caregivers support patients 
-          struggling with Alzheimer's Disease and other forms of dementia. 
-          <br />
-          <br />
-          iRemember gives caregivers the ability to set reminders for their patients and provides an interface 
-          to help patients recognize important people in their lives using their mobile devices.</h2>
-          <a href="/auth/google" className="get-started-now-text"><Button bsSize='large' className="get-started-now">Sign up to get started now!</Button></a>
-        </div>
+    <div className="landing">
+      <img 
+        src="homepage.jpg"
+        srcset="homepage2x.jpg 2x, 
+                homepage3x.jpg 3x" 
+        className="home-image"/>
+      <div className="home-box">
+        <div className="home-logo">iRemember</div>
+        <div className="home-description">Designed to help caregivers support patients struggling with Alzheimer’s Disease and other forms of dementia.</div>
+        <div className="home-bullet">With 
+          <span className="home-bullet bold-text">iRemember</span>
+          , you can: set reminders help care recipients recognize loved ones easy mobile app</div>
+        <button className="sign-up-button">
+          <span className="sign-up-button-text">Sign up now</span>
+        </button>
+        <a className="sign-in">Sign in</a>
       </div>
     </div>
     )    

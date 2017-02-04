@@ -233,7 +233,7 @@ export default class RootNavigation extends React.Component {
 
   render() {
 
-    if (!this.state.fingerprint || !this.state.authenticated) {
+    /*if (!this.state.fingerprint || !this.state.authenticated) {
       return (
         <StackNavigation
         defaultRouteConfig={{
@@ -250,7 +250,7 @@ export default class RootNavigation extends React.Component {
         initialRoute={Router.getRoute('login', {authFunction: this.authFunction, state:this.state, handleTextChange: this.handleTextChange, handleTextSubmit: this.handleTextSubmit})}/>
           // initialRoute='login' />
       )
-    } else {
+    } else {*/
       return (
         <TabNavigation
           // tabBarColor='#9EBDFF'
@@ -323,7 +323,7 @@ export default class RootNavigation extends React.Component {
         </TabNavigation>
       );
 
-    }
+    // }
   }
 
   _renderIcon(name, isSelected) {

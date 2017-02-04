@@ -42,7 +42,7 @@ export default class ReminderInfoScreen extends React.Component {
   render() {
     var audio = <Text>''</Text>;
     if (current.audio) {
-      audio = <Components.Video source={{uri: current.audio}}/>;
+      audio = <Components.Video className='video' source={{uri: current.audio}}/>;
     }
     return (
       <ScrollView 
@@ -51,7 +51,6 @@ export default class ReminderInfoScreen extends React.Component {
           <Text style={styles.reminderTitle}>{current.title}</Text>
         {audio}
           <Text style={styles.reminderNote}>{current.note}</Text>
-    
          <Ionicons size={200} color='#FBFBF2' name={images[current.type]} /> 
 
           <Text style={styles.reminderTimeDate}>{Moment(current.date).calendar().toString()}</Text>
