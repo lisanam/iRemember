@@ -4,6 +4,8 @@ import { expect } from 'chai';
 
 import Home from '../../web/webHome.js';
 import WebNav from '../../web/webNav.js';
+import WebTab from '../../web/webTab.js';
+import Setup from '../../web/webSetup.js';
 
 import Face from '../../web/webFace.js';
 import FaceList from '../../web/webFaceList.js';
@@ -23,7 +25,7 @@ describe('<Home />', () => {
 
   it('has a homepage', () => {
     const wrapper = shallow(<Home />);
-    // expect(wrapper.find('.home-container')).to.have.length(1);
+    expect(wrapper.find('.home-container')).to.have.length(1);
   });
 
 });
@@ -33,11 +35,50 @@ describe('<WebNav />', () => {
   it('renders navigation', () => {
     const wrapper = shallow(<WebNav />);
     expect(wrapper.html()).to.contain('iRemember');
-    // Logged in as:
+  });
+  // Logged in as:
     //Sign In signout
+
+});
+
+describe('<WebTab />', () => {
+
+  it('does not show up before login', () => {
+    const wrapper = shallow(<WebTab />);
+    expect(wrapper.find('.link').exists()).to.equal(false);
+    var caregiverName = 'Bob';
+    var needsSetup = true;
+    expect(wrapper.find('.link').exists()).to.equal(true);
   });
 
 });
+
+describe('<Setup />', () => {
+
+  it('gets patient\'s name as an input', () => {
+    const wrapper = shallow(<Setup />);
+    expect(wrapper.find('.patientName').text()).to.equal('');
+    // wrapper.setState({patientName: 'Bob'}, () => {
+    //   expect(wrapper.find('.patientName').text()).to.equal('Bob');
+    // });
+  });
+
+  // it('shows a loader before the set-up form is ready', () => {
+  //   const wrapper = shallow(<Setup />);
+  //   expect(wrapper.find('.spinner')).to.have.length(1);
+  // });
+
+  // it('shows a form when the set-up form is ready', () => {
+  //   const wrapper = shallow(<Setup />);
+  //   wrapper.setState({loader: false}, () => {
+
+  //   console.log(wrapper.find('.spinner'));
+  //     expect(wrapper.find('.spinner')).to.have.length(0);
+  //   });
+  // });
+
+});
+
 
 describe('<FaceList />', () => {
 
