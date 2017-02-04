@@ -21,9 +21,9 @@ export default class Home extends React.Component {
           <span className="home-bullet bold-text">iRemember</span>
           , you can: set reminders help care recipients recognize loved ones easy mobile app</div>
         <button className="sign-up-button">
-          <span className="sign-up-button-text">Sign up now</span>
+          <a href="/auth/google" className="sign-up-button-text">Sign up now</a>
         </button>
-        <a className="sign-in">Sign in</a>
+        <a href="/signin" className="sign-in">Sign in</a>
       </div>
     </div>
     )    
