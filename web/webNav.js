@@ -17,7 +17,7 @@ class WebNav extends React.Component {
   }
 
   render() {
-    var nav = !!caregiverName.get() ? (
+    return (
       <Navbar>
         <Navbar.Header>
           <Navbar.Brand>
@@ -28,8 +28,7 @@ class WebNav extends React.Component {
           <NavItem className="caregiver-name">Logged in as: {caregiverName.get()}</NavItem>
           <NavItem href="/signout">Sign Out</NavItem>
         </Nav>
-      </Navbar>) : null;
-    return nav;
+      </Navbar>)
   }
 }
 
