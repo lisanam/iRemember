@@ -2,10 +2,12 @@ const express = require('express');
 const path = require('path');
 const request = require('request');
 const app = express();
-const db = require('../database/db.js');
 
 //Environment variables
 require('dotenv').config();
+
+//Database Setup
+const db = require('../database/db.js');
 
 //Middleware and Authentication Setup
 const bodyParser = require('body-parser');

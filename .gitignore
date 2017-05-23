@@ -9,6 +9,9 @@
 # Compiled Files
 bundle/
 
+# Minified CSS
+public/style.min.css
+
 # Dependencies
 node_modules/
 

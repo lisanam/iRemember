@@ -557,8 +557,8 @@ module.exports = {
     });
   },
   setup: (req, res) => {
-    let newPersonGroupId = `ecstatic-eels-5-${req.user.id}`; 
-    let patientGroupId = `ecstatic-eels-patients-deploy-0`; 
+    let newPersonGroupId = `${process.env.MICROSOFT_PERSON_GROUP_ID}-${req.user.id}`; 
+    let patientGroupId = process.env.MICROSOFT_PATIENTS_GROUP_ID; 
     handleSetupForm(req, (patientPhotoArray, fields) => {
       request.post({
         headers: microsoftHeaders,
@@ -575,7 +575,8 @@ module.exports = {
         db.Patient.create({
           name: fields.patientName[0],
           personGroupID: newPersonGroupId,
-          personId: createdPerson.personId
+          personId: createdPerson.personId,
+          photo: patientPhotoArray[0]
         })
         .then(patient => {
           let result = [];

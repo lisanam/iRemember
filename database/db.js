@@ -1,6 +1,9 @@
 //Database
 const Sequelize = require('sequelize');
-const sequelizeDb = new Sequelize('iremember', 'ecstaticeels', 'cool', {
+const DBPassword = process.env.MYSQL_PASSWORD
+const sequelizeDb = new Sequelize('iremember',  
+  process.env.MYSQL_USERNAME, 
+  DBPassword, {
   host: 'localhost',
   dialect: 'mysql'
 });

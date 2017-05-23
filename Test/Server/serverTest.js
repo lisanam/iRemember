@@ -7,8 +7,7 @@ const request = supertest.agent(server);
 const mysql = require('mysql');
 const testPersonGroupId = 'ecstatic-eels-test'
 chai.use(chaiHttp);
-//need to add photo on desktop called iremember-test.jpg
-const testPhotoPath = '/Users/jenniferkao/Desktop/iremember-test.jpg';
+const testPhotoPath = './iremember-test.jpg';
 process.env.NODE_ENV = 'test';
 
 server.request.isAuthenticated = function() {

@@ -10,7 +10,15 @@ export default class PatientProfile extends React.Component {
   }
 
   render() {
-    var cloudinaryImage = this.props.handleCloudinaryUrl([patientImage.get()], 170, 170, 'fill')
+    console.log('!', patientImage.get())
+    var cloudinaryImage = patientImage.get() ? this.props.handleCloudinaryUrl([patientImage.get()], 170, 170, 'fill'): ''
+    var view = patientImage.get() ? (
+                <Jumbotron>
+            <div className='jumbo-content'>
+              <img src={cloudinaryImage} className='jumbo-patient-image'/>
+              <h1 className="jumbo-patient-name">{patientName.get()}</h1>
+            </div>
+          </Jumbotron>) : null;
     return (
       <Grid>
         <div className='jumbo-container'>

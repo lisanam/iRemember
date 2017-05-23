@@ -111,7 +111,7 @@ export default class Setup extends React.Component {
     var patientPhotos = !needsSetup.get() ?       
       (<label>
         <div className="setup-face-form">
-        {thumbnailPhotos.length > 0 ? thumbnailPhotos.map((val, ind) => {
+        {thumbnailPhotos && thumbnailPhotos.length > 0 ? thumbnailPhotos.map((val, ind) => {
           return <img src={val} key={ind} className="preview-img front" />
         }) : null}
         </div>
@@ -124,9 +124,9 @@ export default class Setup extends React.Component {
             <h1>{patientHeader}</h1>
           </Row>
           <Row className="show-grid">
-            <Col md={5}>
-              {patientPhotos}
-            </Col>
+            <div>{
+              thumbnailPhotos && thumbnailPhotos.length > 0 ? <Col md={4}>{patientPhotos}</Col> : <div></div>
+            }</div>
             <Col md={7}>
               <label>
                 Patient Name:

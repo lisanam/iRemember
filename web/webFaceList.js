@@ -18,7 +18,7 @@ export default class FaceList extends React.Component {
     return (
         <div className="face-list">
           <ListGroup bsClass="list-group">
-            {thumbnailPhotos.length > 0 ? thumbnailPhotos.map((val, ind) => {
+            {thumbnailPhotos && thumbnailPhotos.length > 0 ? thumbnailPhotos.map((val, ind) => {
               console.log(that.props.current.dbId, that.props.list[ind].dbId)
               if (that.props.current.dbId === that.props.list[ind].dbId) {
                 styleObj = {backgroundColor: '#eaeaea'}

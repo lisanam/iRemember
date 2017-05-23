@@ -55,7 +55,7 @@ class App extends React.Component {
         }
         if (!parsed.caregiver.patientId) {
           needsSetup.set(true);
-          browserHistory.push('/setup');
+          browserHistory.push('/patient/setup');
         } else {
           console.log('hi')
           browserHistory.push('/patient/reminders');;
@@ -80,11 +80,13 @@ class App extends React.Component {
 
   handleCloudinaryUrl(urlArray, w, h, type) {
     var newCloudinaryUrlArray = [];
-    for (var i = 0; i < urlArray.length; i++) {
-      var newUrl = urlArray[i].slice(0, 49) + `w_${w},h_${h},c_${type},g_face/a_auto_right/` + urlArray[i].slice(49);
-      newCloudinaryUrlArray.push(newUrl);
+    if (urlArray.length > 0) {
+      for (var i = 0; i < urlArray.length; i++) {
+        var newUrl = urlArray[i].slice(0, 49) + `w_${w},h_${h},c_${type},g_face/a_auto_right/` + urlArray[i].slice(49);
+        newCloudinaryUrlArray.push(newUrl);
+      }
+      return newCloudinaryUrlArray;
     }
-    return newCloudinaryUrlArray;
   }
 
   render() {
@@ -136,8 +138,8 @@ ReactDOM.render((
       <Route path="signout" component={Signout}/>
       <Route path="500" component={ServerError} />
       <Route path='patient' component={PatientProfile} onEnter={requireAuth}>
-        <Route path="reminders" component={Reminder} onEnter={requireAuth}/>
         <Route path="setup" component={Setup} onEnter={requireAuth}/>
+        <Route path="reminders" component={Reminder} onEnter={requireAuth}/>
         <Route path="face" component={Face} onEnter={requireAuth}/>
       </Route>
       <Route path='*' component={NotFound} />

@@ -43,11 +43,17 @@ module.exports = function(grunt) {
     },
     
     mochaTest: {
-      test: {
+      server: {
         options: {
           reporter: 'spec'
         },
         src: ['Test/Server/serverTest.js']
+      },
+      client: {
+        options: {
+          reporter: 'nyan'
+        },
+        src: ['Test/Client/.enzymeSetup.js', 'Test/Client/webTest.js']
       }
     },
 
@@ -82,7 +88,7 @@ module.exports = function(grunt) {
       },
       target: {
         files: {
-          'public/bundle/style.min.css': ['public/*.css']
+          'public/style.min.css': ['public/*.css']
         }
       }
     },
@@ -123,7 +129,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-webpack');
 
-  grunt.registerTask('server-dev', function (target) {
+  grunt.registerTask('start-dev', function (target) {
     grunt.task.run([ 'nodemon', 'watch' ]);
   });
 
@@ -136,17 +142,17 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-   'eslint', 'mochaTest', 'webpack', 'uglify', 'cssmin'
+   'eslint', 'webpack', 'uglify', 'cssmin'
   ]);
 
-  // grunt.registerTask('upload', function(n) {
-  //   if (grunt.option('prod')) {
-  //     // add your production server task here
-  //     grunt.task.run([ 'shell' ]);
-  //   } else {
-  //     grunt.task.run([ 'server-dev' ]);
-  //   }
-  // });
+  grunt.registerTask('upload', function(n) {
+    if (grunt.option('prod')) {
+      // add your production server task here
+      grunt.task.run([ 'shell' ]);
+    } else {
+      grunt.task.run([ 'dev' ]);
+    }
+  });
 
   // grunt.registerTask('deploy', [
     
