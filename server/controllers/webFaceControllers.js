@@ -572,15 +572,17 @@ module.exports = {
           res.status(400);
         }
         let createdPerson = JSON.parse(body);
-        db.Patient.create({
+        let newPerson = {
           name: fields.patientName[0],
           personGroupID: newPersonGroupId,
           personId: createdPerson.personId,
-          photo: patientPhotoArray[0]
-        })
+        }
+        newPerson.photo= patientPhotoArray ? patientPhotoArray[0] : null;
+        db.Patient.create(newPerson)
         .then(patient => {
           let result = [];
           if (patientPhotoArray && patientPhotoArray.length) {
+            console.log('do they have patientPhotoArray?', patientPhotoArray)
             patientPhotoArray.forEach(patientPhoto => {
               request.post({
                 headers: microsoftHeaders,
@@ -636,7 +638,16 @@ module.exports = {
                           res.status(400);
                         })
                       });
-           } else {
+                    }
+                  })
+                  .catch(err => {
+                    console.log(err);
+                    res.status(400);
+                  })
+                }
+              );
+            });
+          } else {
             db.Caregiver.update(
               {
                 patientId: patient.get('id'),
@@ -667,15 +678,6 @@ module.exports = {
               res.status(400);
             })
           }
-                  })
-                  .catch(err => {
-                    console.log(err);
-                    res.status(400);
-                  })
-                }
-              );
-            });
-          } 
         })
         .catch(err => {
           console.log(err);

@@ -11,7 +11,7 @@ export default class PatientProfile extends React.Component {
 
   render() {
     console.log('!', patientImage.get())
-    var cloudinaryImage = patientImage.get() ? this.props.handleCloudinaryUrl([patientImage.get()], 170, 170, 'fill'): ''
+    var cloudinaryImage = patientImage.get() ? this.props.handleCloudinaryUrl([patientImage.get()], 170, 170, 'fill'): '../defaulticon.jpeg'
     var view = patientImage.get() ? (
                 <Jumbotron>
             <div className='jumbo-content'>

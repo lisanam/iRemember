@@ -85,9 +85,8 @@ export default class Setup extends React.Component {
         if (caregiverName.get() && !needsSetup.get()) { //if the account does not need setup
           patientName.set(parsed.patient.name);
         } else if (caregiverName.get() && needsSetup.get()) { //if the account just completed setup
-          needsSetup.set(false);
-          caregiverName.set(parsed.caregiver.name);
           patientName.set(parsed.patient.name);
+          needsSetup.set(false);
         }
         that.setState({
           loader: false
