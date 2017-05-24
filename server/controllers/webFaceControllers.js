@@ -580,7 +580,7 @@ module.exports = {
         })
         .then(patient => {
           let result = [];
-          if (patientPhotoArray) {
+          if (patientPhotoArray && patientPhotoArray.length) {
             patientPhotoArray.forEach(patientPhoto => {
               request.post({
                 headers: microsoftHeaders,
@@ -636,7 +636,37 @@ module.exports = {
                           res.status(400);
                         })
                       });
-                    }
+           } else {
+            db.Caregiver.update(
+              {
+                patientId: patient.get('id'),
+                personGroupID: newPersonGroupId
+              }, 
+              {
+                where: {
+                  id: req.user.id
+                }
+              }
+            )
+            .then(caregiver => {
+              request.put({
+                headers: microsoftHeaders,
+                url: `https://api.projectoxford.ai/face/v1.0/persongroups/${newPersonGroupId}`,
+                body: JSON.stringify({"name": newPersonGroupId})
+              }, (err, response, body) => {
+                if (err) {
+                  console.log(err);
+                  res.status(400);
+                }
+                console.log('caregiver and patient associated');
+                res.status(201).send(JSON.stringify({patient: patient, caregiver: caregiver}));
+              })
+            })
+            .catch(err => {
+              console.log(err);
+              res.status(400);
+            })
+          }
                   })
                   .catch(err => {
                     console.log(err);
